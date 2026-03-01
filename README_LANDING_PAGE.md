@@ -85,14 +85,26 @@ Mobile menu (hamburger) otomatis aktif pada layar kecil.
 
 ## 🎨 Warna & Design
 
-- **Warna Utama**: #C8573B (Merah Bata Betawi) - Warna khas Gigi Balang
-- **Warna Sekunder**: #D4AF37 (Emas Betawi)
-- **Warna Aksen**: #8B0000 (Merah Tua)
+- **Warna Utama**: #1B4D3E (Hijau Tua Betawi) - Warna khas Kebaya Betawi
+- **Warna Sekunder**: #FFD700 (Emas Kuning Betawi)
+- **Warna Aksen**: #DC143C (Merah)
 - **Warna Latar**: #F5E6D3 (Krem Betawi)
 - **Font**: Segoe UI, sans-serif
-- **Design**: Palet tradisional Betawi yang modern, Professional, Clean
+- **Design**: Palet tradisional Betawi Rumah Kebaya yang modern, Professional, elegant
 
-**Inspirasi Warna**: Gigi Balang adalah makanan tradisional Betawi dengan warna merah keemasan yang menjadi ciri khas kuliner Jakarta. Palet ini mencerminkan kekayaan budaya Betawi.
+**Inspirasi Warna**: Rumah Kebaya Betawi dengan dominasi warna hijau gelap dan aksen kuning emas, mencerminkan kekayaan budaya dan keanggunan arsitektur tradisional Betawi.
+
+### ✨ Fitur Animasi
+- **Background Pattern**: Animasi bergerak berbentuk **+** (plus) yang mengalir dinamis
+- **Loading Animation**: Spinner elegan saat memuat galeri
+- **Interactive Buttons**: Hover effects yang responsif dengan warna Betawi
+
+### 🖼️ Carousel/Gallery
+- **Auto-Loading**: Otomatis memuat foto dari folder `/images/`
+- **Auto-Rotate**: Carousel berputar setiap 7 detik
+- **Manual Navigation**: Tombol prev/next dan dots untuk navigasi manual
+- **Error Handling**: Jika foto tidak ditemukan, tetap menampilkan placeholder yang elegant
+- **Counter**: Menampilkan posisi slide (1/5, 2/5, dst)
 
 ## 🚀 Cara Menggunakan
 
@@ -193,9 +205,31 @@ Harap perbarui informasi kontak berikut di `index.html`:
 - Pastikan koneksi internet tersedia untuk load icons
 - Dapat diganti/diunduh lokal jika diperlukan offline
 
-## 📄 Lisensi
+## 📄 Lisensi & Hak Cipta
 
+### ©️ Hak Cipta Resmi SMAN 33 Jakarta
+
+```
 © 2026 SMAN 33 Jakarta. Semua hak dilindungi.
+
+Jl. Kamal Raya No. 54
+Cengkareng Barat, Jakarta Barat 11730
+Jakarta, Indonesia
+
+Website Resmi SMAN 33 Jakarta
+Dikembangkan dengan dedikasi untuk pendidikan berkualitas
+```
+
+### Lisensi Konten
+- ✅ **Website**: Milik resmi SMAN 33 Jakarta
+- ✅ **Foto & Galeri**: Hak cipta SMAN 33 Jakarta
+- ✅ **Konten Edukatif**: Dikembangkan untuk kepentingan sekolah
+- ✅ **Penggunaan Public**: Untuk tujuan informasi dan edukasi masyarakat
+
+### 📋 Ketentuan Penggunaan
+- Konten dapat digunakan untuk keperluan resmi sekolah
+- Foto tidak boleh diproyek ulang tanpa izin tertulis
+- Penyimpanan data siswa sesuai dengan kebijakan keamanan sekolah
 
 ---
 

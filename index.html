@@ -40,69 +40,23 @@
         <div class=\"container\">
             <h2 class=\"section-title\">Galeri SMAN 33 Jakarta</h2>
             <div class=\"carousel-container\">
-                <div class=\"carousel-wrapper\">
-                    <!-- Slide 1 -->
-                    <div class=\"carousel-slide active placeholder\">
-                        <div class=\"placeholder-content\">
-                            <i class=\"fas fa-image\"></i>
-                            <p>Foto dari Instagram SMAN 33 Jakarta</p>
-                            <p class=\"placeholder-text\">Tarik gambar dari Instagram atau upload foto disini</p>
-                        </div>
+                <div class=\"carousel-wrapper\" id=\"carouselWrapper\">
+                    <div class=\"carousel-loading\">
+                        Memuat galeri dari Instagram SMAN 33 Jakarta...
                     </div>
-
-                    <!-- Slide 2 -->
-                    <div class=\"carousel-slide placeholder\">
-                        <div class=\"placeholder-content\">
-                            <i class=\"fas fa-image\"></i>
-                            <p>Galeri Sekolah</p>
-                            <p class=\"placeholder-text\">Slide 2</p>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class=\"carousel-slide placeholder\">
-                        <div class=\"placeholder-content\">
-                            <i class=\"fas fa-image\"></i>
-                            <p>Kegiatan Siswa</p>
-                            <p class=\"placeholder-text\">Slide 3</p>
-                        </div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class=\"carousel-slide placeholder\">
-                        <div class=\"placeholder-content\">
-                            <i class=\"fas fa-image\"></i>
-                            <p>Event Sekolah</p>
-                            <p class=\"placeholder-text\">Slide 4</p>
-                        </div>
-                    </div>
-
-                    <!-- Slide 5 -->
-                    <div class=\"carousel-slide placeholder\">
-                        <div class=\"placeholder-content\">
-                            <i class=\"fas fa-image\"></i>
-                            <p>Fasilitas Sekolah</p>
-                            <p class=\"placeholder-text\">Slide 5</p>
-                        </div>
-                    </div>
-
-                    <!-- Navigation Arrows -->
-                    <button class=\"carousel-prev\" onclick=\"changeSlide(-1)\">❮</button>
-                    <button class=\"carousel-next\" onclick=\"changeSlide(1)\">❯</button>
                 </div>
 
+                <!-- Navigation Arrows -->
+                <button class=\"carousel-prev\" onclick=\"changeSlide(-1)\">❮</button>
+                <button class=\"carousel-next\" onclick=\"changeSlide(1)\">❯</button>
+
                 <!-- Dots Navigation -->
-                <div class=\"carousel-dots\">
-                    <span class=\"dot active\" onclick=\"currentSlide(0)\"></span>
-                    <span class=\"dot\" onclick=\"currentSlide(1)\"></span>
-                    <span class=\"dot\" onclick=\"currentSlide(2)\"></span>
-                    <span class=\"dot\" onclick=\"currentSlide(3)\"></span>
-                    <span class=\"dot\" onclick=\"currentSlide(4)\"></span>
+                <div class=\"carousel-dots\" id=\"carouselDots\">
                 </div>
 
                 <!-- Carousel Info -->
                 <div class=\"carousel-info\">
-                    <span id=\"slide-counter\">1 / 5</span>
+                    <span id=\"slide-counter\">Memuat galeri...</span>
                 </div>
             </div>
         </div>
@@ -204,7 +158,14 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 SMAN 33 Jakarta. Semua hak dilindungi.</p>
+            <p>&copy; 2026 <strong>SMAN 33 Jakarta</strong>. Semua hak dilindungi.</p>
+            <div class=\"footer-copyright\">
+                <p>Hak Cipta © 2026 - SMAN 33 Jakarta</p>
+                <p>Jl. Kamal Raya No. 54, Cengkareng Barat, Jakarta Barat 11730</p>
+            </div>
+            <div class=\"footer-credit\">
+                <p>Website Resmi SMAN 33 Jakarta | Dikembangkan dengan dedikasi untuk pendidikan berkualitas</p>
+            </div>
         </div>
     </footer>
 

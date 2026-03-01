@@ -27,16 +27,75 @@ document.addEventListener('click', (e) => {
 
 // ============ Carousel Functionality ============
 let currentSlideIndex = 0;
+let carouselPhotos = [];
+
+// Function to load Instagram photos
+async function loadInstagramPhotos() {
+    try {
+        // Metode 1: Menggunakan Instagram Embedded Posts dengan fetch dari local API
+        // atau menggunakan Instagram images dari URL langsung
+        
+        // Default fallback images (user bisa update dengan real Instagram photos)
+        carouselPhotos = [
+            { url: 'images/galeri1.jpg', alt: 'Galeri SMAN 33 Jakarta 1' },
+            { url: 'images/galeri2.jpg', alt: 'Galeri SMAN 33 Jakarta 2' },
+            { url: 'images/galeri3.jpg', alt: 'Galeri SMAN 33 Jakarta 3' },
+            { url: 'images/galeri4.jpg', alt: 'Galeri SMAN 33 Jakarta 4' },
+            { url: 'images/galeri5.jpg', alt: 'Galeri SMAN 33 Jakarta 5' }
+        ];
+
+        // Render carousel dengan photos
+        renderCarousel(carouselPhotos);
+    } catch (error) {
+        console.error('Error loading Instagram photos:', error);
+        // Tampilkan fallback message
+        document.getElementById('carouselWrapper').innerHTML = `
+            <div class=\"carousel-loading\">
+                <p>📸 Galeri Instagram sedang dimuat...</p>
+                <p style=\"font-size: 0.9rem; margin-top: 10px;\">Pastikan folder 'images/' berisi foto dari Instagram SMAN 33 Jakarta</p>
+            </div>
+        `;
+    }
+}
+
+function renderCarousel(photos) {
+    const carouselWrapper = document.getElementById('carouselWrapper');
+    const carouselDots = document.getElementById('carouselDots');
+    
+    // Clear existing content
+    carouselWrapper.innerHTML = '';
+    carouselDots.innerHTML = '';
+
+    // Create slides
+    photos.forEach((photo, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide' + (index === 0 ? ' active' : '');
+        slide.innerHTML = `<img src="${photo.url}" alt="${photo.alt}" onerror="this.style.display='none'; this.parentElement.style.display='flex'; this.parentElement.innerHTML='<div style=\\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, #F5E6D3 0%, #E8D4B8 100%); color:#1B4D3E; text-align:center; padding:2rem;\\'>📷 Foto tidak tersedia. <br> Silakan tambahkan foto di folder images/<\\/div>';">`;
+        carouselWrapper.appendChild(slide);
+
+        // Create dot
+        const dot = document.createElement('span');
+        dot.className = 'dot' + (index === 0 ? ' active' : '');
+        dot.onclick = () => currentSlide(index);
+        carouselDots.appendChild(dot);
+    });
+
+    // Update counter
+    updateSlideCounter(photos.length);
+}
 
 function showSlide(index) {
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.dot');
+    const totalSlides = slides.length;
+
+    if (totalSlides === 0) return;
 
     // Wrap around
-    if (index >= slides.length) {
+    if (index >= totalSlides) {
         currentSlideIndex = 0;
     } else if (index < 0) {
-        currentSlideIndex = slides.length - 1;
+        currentSlideIndex = totalSlides - 1;
     } else {
         currentSlideIndex = index;
     }
@@ -56,7 +115,7 @@ function showSlide(index) {
     dots[currentSlideIndex].classList.add('active');
 
     // Update counter
-    document.getElementById('slide-counter').textContent = `${currentSlideIndex + 1} / ${slides.length}`;
+    updateSlideCounter(totalSlides);
 }
 
 function changeSlide(n) {
@@ -67,19 +126,37 @@ function currentSlide(n) {
     showSlide(n);
 }
 
+function updateSlideCounter(total) {
+    const counter = document.getElementById('slide-counter');
+    if (counter) {
+        counter.textContent = `${currentSlideIndex + 1} / ${total}`;
+    }
+}
+
+// Load carousel on page ready
+document.addEventListener('DOMContentLoaded', () => {
+    loadInstagramPhotos();
+});
+
 // Auto-rotate slides every 7 seconds
 let autoRotateInterval = setInterval(() => {
-    changeSlide(1);
+    const slides = document.querySelectorAll('.carousel-slide');
+    if (slides.length > 0) {
+        changeSlide(1);
+    }
 }, 7000);
 
 // Reset auto-rotate on manual navigation
-document.querySelectorAll('.carousel-prev, .carousel-next, .dot').forEach(btn => {
-    btn.addEventListener('click', () => {
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.carousel-prev, .carousel-next, .dot')) {
         clearInterval(autoRotateInterval);
         autoRotateInterval = setInterval(() => {
-            changeSlide(1);
+            const slides = document.querySelectorAll('.carousel-slide');
+            if (slides.length > 0) {
+                changeSlide(1);
+            }
         }, 7000);
-    });
+    }
 });
 
 // Add scroll effect to navbar
