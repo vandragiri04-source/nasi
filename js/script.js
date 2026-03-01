@@ -25,6 +25,63 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// ============ Carousel Functionality ============
+let currentSlideIndex = 0;
+
+function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+
+    // Wrap around
+    if (index >= slides.length) {
+        currentSlideIndex = 0;
+    } else if (index < 0) {
+        currentSlideIndex = slides.length - 1;
+    } else {
+        currentSlideIndex = index;
+    }
+
+    // Hide all slides
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+
+    // Remove active class from all dots
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
+
+    // Show current slide and activate dot
+    slides[currentSlideIndex].classList.add('active');
+    dots[currentSlideIndex].classList.add('active');
+
+    // Update counter
+    document.getElementById('slide-counter').textContent = `${currentSlideIndex + 1} / ${slides.length}`;
+}
+
+function changeSlide(n) {
+    showSlide(currentSlideIndex + n);
+}
+
+function currentSlide(n) {
+    showSlide(n);
+}
+
+// Auto-rotate slides every 7 seconds
+let autoRotateInterval = setInterval(() => {
+    changeSlide(1);
+}, 7000);
+
+// Reset auto-rotate on manual navigation
+document.querySelectorAll('.carousel-prev, .carousel-next, .dot').forEach(btn => {
+    btn.addEventListener('click', () => {
+        clearInterval(autoRotateInterval);
+        autoRotateInterval = setInterval(() => {
+            changeSlide(1);
+        }, 7000);
+    });
+});
+
 // Add scroll effect to navbar
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
@@ -68,6 +125,18 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.feature-card, .vm-card, .info-card').forEach(card => {
     observer.observe(card);
 });
+
+// ============ Google Maps Integration ============
+const addressLink = document.querySelector('.address-link');
+if (addressLink) {
+    addressLink.addEventListener('click', (e) => {
+        // Feedback visual saat diklik
+        addressLink.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+            addressLink.style.transform = 'scale(1)';
+        }, 100);
+    });
+}
 
 // Define animation
 const style = document.createElement('style');
