@@ -25,6 +25,40 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// ============ Dark Mode Toggle ============
+const darkModeBtn = document.getElementById('darkModeBtn');
+const htmlElement = document.documentElement;
+
+// Load dark mode preference from localStorage
+function loadDarkModePreference() {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        htmlElement.setAttribute('data-theme', 'dark');
+        updateDarkModeIcon(true);
+    }
+}
+
+// Update dark mode icon
+function updateDarkModeIcon(isDarkMode) {
+    if (darkModeBtn) {
+        darkModeBtn.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+}
+
+// Toggle dark mode
+if (darkModeBtn) {
+    darkModeBtn.addEventListener('click', () => {
+        const isDarkMode = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode);
+        htmlElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        updateDarkModeIcon(isDarkMode);
+    });
+}
+
+// Load dark mode preference on page load
+document.addEventListener('DOMContentLoaded', loadDarkModePreference);
+
 // ============ Carousel Functionality ============
 let currentSlideIndex = 0;
 let carouselPhotos = [];
