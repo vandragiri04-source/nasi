@@ -5,14 +5,16 @@
 }
 
 :root {
-    --primary-color: #6B9B87;
-    --secondary-color: #F4D8B8;
-    --accent-color: #E8B4A8;
-    --betawi-cream: #F9F7F4;
+    --primary-color: #2D8F2D;
+    --secondary-color: #FFD700;
+    --accent-color: #FF9800;
+    --betawi-cream: #FFFEF0;
     --text-color: #4A4A4A;
-    --light-bg: #FAF8F5;
+    --light-bg: #F0F8F0;
     --white: #ffffff;
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --hijau-betawi: #2D8F2D;
+    --kuning-betawi: #FFD700;
     
     /* Dark mode colors */
     --dark-primary: #1A2D2B;
@@ -29,12 +31,13 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--white);
     position: relative;
     overflow-x: hidden;
-}
+} /* global font size slightly larger */
 
 /* animated pattern background for all pages */
 body::before {
@@ -65,9 +68,9 @@ body::before {
     right: 0;
     bottom: 0;
     background-image: 
-        radial-gradient(circle at 20% 50%, rgba(235, 224, 208, 0.4) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(107, 155, 135, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(232, 180, 168, 0.06) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(45, 143, 45, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 152, 0, 0.06) 0%, transparent 50%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     pointer-events: none;
@@ -91,6 +94,15 @@ body.dark-mode {
     color: var(--dark-text);
     background-color: var(--dark-bg);
 }
+
+/* Light mode footer adjustments: make copyright and surrounding text black */
+body:not(.dark-mode) .footer,
+body:not(.dark-mode) .footer p,
+body:not(.dark-mode) .footer .footer-credit,
+body:not(.dark-mode) .footer .footer-copyright {
+    color: var(--black);
+}
+
 
 body.dark-mode::before {
     background-image: 
@@ -201,7 +213,7 @@ body.dark-mode::before {
 
 /* ============ Hero Section ============ */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #5A8574 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1F6B1F 100%);
     color: var(--white);
     padding: 150px 20px;
     text-align: center;
@@ -247,9 +259,9 @@ body.dark-mode::before {
 }
 
 .btn-primary:hover {
-    background-color: #E8C89E;
+    background-color: #FFC700;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(244, 216, 184, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
 }
 
 .dark-mode .btn-primary {
@@ -312,10 +324,14 @@ body.dark-mode::before {
 
 .about-text p {
     margin-bottom: 1.5rem;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     text-align: justify;
-    color: #555;
+    color: #444; /* a bit lighter for left text */
+}
+
+.dark-mode .about-text p {
+    color: #AAA;
 }
 
 .about-features {
@@ -475,10 +491,19 @@ body.dark-mode::before {
 }
 
 .vm-card p {
-    font-size: 1rem;
+    font-size: 1.15rem;
     line-height: 1.8;
     color: #555;
     text-align: justify;
+    transition: color 0.3s ease;
+}
+
+.mission-list li {
+    padding: 0.8rem 0 0.8rem 2rem;
+    position: relative;
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.05rem;
     transition: color 0.3s ease;
 }
 
@@ -654,7 +679,7 @@ body.dark-mode::before {
 /* ============ Tagline Section ============ */
 .tagline-section {
     padding: 60px 20px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #5A8574 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1F6B1F 100%);
     color: var(--white);
     text-align: center;
     position: relative;
@@ -705,9 +730,9 @@ body.dark-mode::before {
 
 .tagline-text:hover {
     background-color: var(--secondary-color);
-    color: var(--primary-color);
+    color: var(--white);
     transform: scale(1.1) translateY(-5px);
-    box-shadow: 0 10px 30px rgba(244, 216, 184, 0.3);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
 }
 
 .dark-mode .tagline-text:hover {
@@ -883,8 +908,8 @@ body.dark-mode::before {
 }
 
 .carousel-slide.placeholder {
-    background: linear-gradient(135deg, var(--light-bg) 0%, #E8D4B8 100%);
-    color: var(--accent-color);
+    background: linear-gradient(135deg, var(--light-bg) 0%, #FFE8B5 100%);
+    color: var(--primary-color);
 }
 
 .placeholder-content {
@@ -971,7 +996,7 @@ body.dark-mode::before {
 
 .carousel-info {
     padding: 1.5rem;
-    background: linear-gradient(135deg, var(--light-bg) 0%, #E8D4B8 100%);
+    background: linear-gradient(135deg, var(--light-bg) 0%, #FFE8B5 100%);
     text-align: center;
     color: var(--hijau-betawi);
     font-size: 0.9rem;
@@ -984,7 +1009,7 @@ body.dark-mode::before {
     align-items: center;
     justify-content: center;
     height: 400px;
-    background: linear-gradient(135deg, var(--light-bg) 0%, #E8D4B8 100%);
+    background: linear-gradient(135deg, var(--light-bg) 0%, #FFE8B5 100%);
     color: var(--hijau-betawi);
     font-size: 1.1rem;
     gap: 10px;
