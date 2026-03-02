@@ -28,17 +28,6 @@ document.addEventListener('click', (e) => {
 // ============ Dark Mode Toggle ============
 const darkModeBtn = document.getElementById('darkModeBtn');
 const htmlElement = document.documentElement;
-
-// Load dark mode preference from localStorage
-function loadDarkModePreference() {
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
-    if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        htmlElement.setAttribute('data-theme', 'dark');
-        updateDarkModeIcon(true);
-    }
-}
-
 // Update dark mode icon
 function updateDarkModeIcon(isDarkMode) {
     if (darkModeBtn) {
@@ -46,13 +35,50 @@ function updateDarkModeIcon(isDarkMode) {
     }
 }
 
-// Toggle dark mode
+// Apply dark mode state (optionally store as user preference)
+function applyDarkMode(isDark, userAction = false) {
+    if (isDark) {
+        document.body.classList.add('dark-mode');
+        htmlElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.body.classList.remove('dark-mode');
+        htmlElement.setAttribute('data-theme', 'light');
+    }
+    updateDarkModeIcon(isDark);
+    if (userAction) {
+        // store explicit user choice
+        localStorage.setItem('darkMode', isDark);
+    }
+}
+
+// Detect system preference and initialize theme
+const prefersDarkMQ = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
+function loadDarkModePreference() {
+    const stored = localStorage.getItem('darkMode');
+    if (stored !== null) {
+        applyDarkMode(stored === 'true', false);
+    } else if (prefersDarkMQ) {
+        applyDarkMode(prefersDarkMQ.matches, false);
+    } else {
+        applyDarkMode(false, false);
+    }
+}
+
+// Listen to system preference changes only if user has NOT set a preference
+if (prefersDarkMQ && prefersDarkMQ.addEventListener) {
+    prefersDarkMQ.addEventListener('change', e => {
+        if (localStorage.getItem('darkMode') === null) {
+            applyDarkMode(e.matches, false);
+        }
+    });
+}
+
+// Toggle dark mode via button (user action overrides system)
 if (darkModeBtn) {
     darkModeBtn.addEventListener('click', () => {
-        const isDarkMode = document.body.classList.toggle('dark-mode');
-        localStorage.setItem('darkMode', isDarkMode);
-        htmlElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-        updateDarkModeIcon(isDarkMode);
+        const isDark = !document.body.classList.contains('dark-mode');
+        applyDarkMode(isDark, true);
     });
 }
 

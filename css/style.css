@@ -372,8 +372,8 @@ body.dark-mode::before {
 
 .vm-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
 }
 
 .vm-card {
@@ -496,7 +496,7 @@ body.dark-mode::before {
 /* ============ Contact Section ============ */
 .contact {
     padding: 80px 20px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #0f3a63 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, rgba(107,155,135,0.85) 100%);
     color: var(--white);
 }
 
@@ -522,13 +522,33 @@ body.dark-mode::before {
 }
 
 .info-card {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.12);
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.3s ease;
+}
+
+/* Dark mode contact adjustments */
+.dark-mode .contact {
+    background: linear-gradient(135deg, var(--dark-primary) 0%, rgba(26,37,35,0.9) 100%);
+    color: var(--dark-text);
+}
+
+.dark-mode .contact .section-title {
+    color: var(--dark-text);
+}
+
+.dark-mode .contact .section-title::after {
+    background-color: var(--dark-secondary);
+}
+
+.dark-mode .info-card {
+    background-color: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.04);
+    color: var(--dark-text);
 }
 
 .info-card:hover {
